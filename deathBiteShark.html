@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <p>акульчик</p>
+        </title>
+        <style>
+        body{
+            background-color: rgba(255, 228, 196, 0.425);
+        }
+            .conteiner{
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+             margin-left: 35%;
+             margin-top: 1%;
+             margin-right: 35%;
+            }
+            .tooth{
+            color: rgb(3, 2, 2);
+            border: solid rgba(22, 22, 22, 0.315);
+            background-color: beige;
+            outline: 30px;
+            padding: 8px;
+            width: 75px;
+            }
+            form{
+            display: flex;
+            flex-direction: row;
+             margin-left: 45%;
+             margin-top: 10%;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form action="form1">
+                <input type="number" id="number-in-one" name="" value="0"><br><br>
+                <button type="button" id="buttonGeneratingButton">создать</button>
+            </form>
+        </div>
+        <div class="conteiner" id="div-conteiner">
+        </div>
+    </body>
+    <script>
+        const gButton = document.getElementById('buttonGeneratingButton');
+        gButton.addEventListener('click',()=>{
+        Clean();
+         generatingButton();
+             
+        });
+
+        function generatingButton(){
+        const generateButton = document.querySelector('input');
+        const teethAMount = generateButton.value;
+        const biteNumber = Math.floor(Math.random()* teethAMount);
+        for (var index = 0; index < teethAMount; index++){
+        const button = document.createElement('button');
+        button.className='tooth';
+        button.innerText = "зубик"+(index+1);
+        if (index == biteNumber) {
+            button.addEventListener('click', () => {
+            alert('проиграл!');
+            location.reload();
+            })
+        }
+        else
+        {
+            button.addEventListener('click', () => {
+            button.remove();
+            })
+        }
+        document.getElementById("div-conteiner").appendChild(button);
+        }
+    }
+    function Clean(){     
+            const clean = document.getElementById("div-conteiner");
+            while (clean.firstChild) {
+            clean.removeChild(clean.lastChild);
+            }
+    }
+    </script>
+</html>
